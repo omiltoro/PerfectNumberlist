@@ -51,15 +51,36 @@ public class PerfectNumber {
         
         
     }
-    
+    public String getPerfectNumber(int min,int max){
+        PerfectNumber myne = new PerfectNumber();   
+        int count = 1;
+        int limit = max;
+        String message = "";
+        while(count<=limit){
+            int sum = 1 + myne.recurse(count,0);
+            boolean check_prime = myne.isPrime(sum);
+            if(check_prime==true){
+                int fval = (int)Math.pow(2, count);
+                int perfect_number = fval * sum;
+                if(perfect_number<=limit){
+                    if(perfect_number>=min){
+                        message += "Calculation is "+fval+" X "+sum+" and the Perfect Number is "+perfect_number+"\n";//Count is "+count+" and the Sum is "+sum);
+                    }                    
+                }else {
+                    break;
+                }
+            }
+            
+            count++;
+        }
+        return message;
+    }
     public int recurse(int count, int sum){        
         if((count!=1)&&(count>0)){
             int count_less  = count-1;
             sum = sum + (int)Math.pow(2, count)+ recurse(count_less,sum);                    
-//            System.out.println("Sum is "+sum);
         }else{
             sum += (int)Math.pow(2, 1);
-//            System.out.println("Sum is "+sum);
         }        
         return sum;
     }
