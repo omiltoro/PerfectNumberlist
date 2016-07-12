@@ -32,9 +32,20 @@ public class PerfectNumber {
 //        System.out.println("Sum is "+sum);
         PerfectNumber myne = new PerfectNumber();   
         int count = 1;
-        while(count<=15){
+        int limit = 30000;
+        while(count<=limit){
             int sum = 1 + myne.recurse(count,0);
-            System.out.println("Count is "+count+" and the Sum is "+sum);
+            boolean check_prime = myne.isPrime(sum);
+            if(check_prime==true){
+                int fval = (int)Math.pow(2, count);
+                int perfect_number = fval * sum;
+                if(perfect_number<=limit){
+                    System.out.println("Calculation is "+fval+" X "+sum+" and the Perfect Number is "+perfect_number);//Count is "+count+" and the Sum is "+sum);
+                }else{
+                    break;
+                }
+            }
+            
             count++;
         }
         
@@ -51,6 +62,14 @@ public class PerfectNumber {
 //            System.out.println("Sum is "+sum);
         }        
         return sum;
+    }
+    
+    public boolean isPrime(int n) {
+        for(int i=2;2*i<n;i++) {
+            if(n%i==0)
+                return false;
+        }
+        return true;
     }
     
 }
