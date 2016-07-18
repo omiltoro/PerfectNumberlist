@@ -1,5 +1,7 @@
 package perfectnumber;
 
+import java.awt.Color;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -35,28 +37,43 @@ public class PerfectNumberInterface extends javax.swing.JFrame {
         calculate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtresult = new javax.swing.JTextArea();
+        calculate1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Perfect Number");
+        setLocationByPlatform(true);
+        setResizable(false);
 
-        jLabel1.setText("Enter Value From:");
+        jLabel1.setText("Enter Minimum Value:");
 
-        jLabel2.setText("Enter Value To:");
+        jLabel2.setText("Enter Maximum Value:");
 
-        val_min.setText("1");
+        val_min.setText("0");
         val_min.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 val_minActionPerformed(evt);
             }
         });
+        val_min.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                val_minFocusGained(evt);
+            }
+        });
 
-        val_max.setText("30000");
+        val_max.setText("100");
         val_max.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 val_maxActionPerformed(evt);
             }
         });
+        val_max.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                val_maxFocusGained(evt);
+            }
+        });
 
-        calculate.setText("Compute");
+        calculate.setText("Generate");
         calculate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 calculateActionPerformed(evt);
@@ -67,28 +84,45 @@ public class PerfectNumberInterface extends javax.swing.JFrame {
         txtresult.setRows(5);
         jScrollPane1.setViewportView(txtresult);
 
+        calculate1.setText("Reset");
+        calculate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculate1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Instructions: Enter the Minimum Value and the Maximum Value and Click Generate to Generate the Perfect Numbers.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(calculate)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(val_max, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                        .addComponent(val_min, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(217, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(calculate1)
+                                .addGap(18, 18, 18)
+                                .addComponent(calculate))
+                            .addComponent(val_max)
+                            .addComponent(val_min)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(val_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -97,10 +131,12 @@ public class PerfectNumberInterface extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(val_max, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addComponent(calculate)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(calculate)
+                    .addComponent(calculate1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addGap(68, 68, 68))
         );
 
         pack();
@@ -116,17 +152,61 @@ public class PerfectNumberInterface extends javax.swing.JFrame {
 
     private void calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateActionPerformed
         // TODO add your handling code here:
-        int  min_val = (val_min.getText().toString() == null) ? 0 : Integer.parseInt(val_min.getText().toString());
-        int  max_val = (val_max.getText().toString() == null) ? 0 : Integer.parseInt(val_max.getText().toString());
-        if((min_val<=0)||(max_val<=0)){
-            txtresult.setText("Please Enter a Value above 1 for Value From and Value To");
+        int min_val = 0;
+        int max_val = 0;
+        try{
+            min_val = (val_min.getText().toString() == null) ? 0 : Integer.parseInt(val_min.getText());            
+        }catch(Exception e){            
+            val_min.setBackground(Color.red);
+            min_val = -1000000;
+        }
+        try{
+            max_val = (val_max.getText().toString() == null) ? 0 : Integer.parseInt(val_max.getText());                    
+        }catch(Exception e){           
+            val_max.setBackground(Color.red);
+            max_val = -1000000;
+        }
+        
+        if((min_val==-100000)||(max_val==-100000)){
+            txtresult.setText("The System only accepts Numbers");
         }else{
-            PerfectNumber perf = new PerfectNumber();
-            String message = "The Perfect Numbers between "+min_val+" and "+max_val+" are: \n";
-            message += perf.getPerfectNumber(min_val, max_val);
-            txtresult.setText(message);
+            if((min_val<0)||(max_val<=0)){
+                txtresult.setText("The System only Allows Positive Numbers between 0 and 1,000,000");
+            }else{
+                if(min_val>max_val){
+                    txtresult.setText("The Miminum Value Entered Cannot be greater than the Maximum Value");
+                    val_min.setBackground(Color.red);
+                }else{
+                    if(min_val==0){min_val+=1;}
+                    PerfectNumber perf = new PerfectNumber();
+                    String message = "The Perfect Numbers between "+min_val+" and "+max_val+" are: \n";
+                    message += perf.getPerfectNumber(min_val, max_val);
+                    txtresult.setText(message);
+                }
+
+            }
         }
     }//GEN-LAST:event_calculateActionPerformed
+
+    private void calculate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculate1ActionPerformed
+        // TODO add your handling code here:
+        val_min.setText("0");
+        val_max.setText("100");
+        txtresult.setText("");
+        val_min.setBackground(Color.white);
+        val_max.setBackground(Color.white);
+    }//GEN-LAST:event_calculate1ActionPerformed
+
+    private void val_minFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_val_minFocusGained
+        // TODO add your handling code here:
+        val_min.setBackground(Color.white);
+        
+    }//GEN-LAST:event_val_minFocusGained
+
+    private void val_maxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_val_maxFocusGained
+        // TODO add your handling code here:
+        val_max.setBackground(Color.white);
+    }//GEN-LAST:event_val_maxFocusGained
 
     /**
      * @param args the command line arguments
@@ -165,8 +245,10 @@ public class PerfectNumberInterface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton calculate;
+    private javax.swing.JButton calculate1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtresult;
     private javax.swing.JTextField val_max;
