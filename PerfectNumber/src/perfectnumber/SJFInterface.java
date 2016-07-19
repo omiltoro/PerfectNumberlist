@@ -99,15 +99,9 @@ public class SJFInterface extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(calculate)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(calculate)
                     .addComponent(panel_myne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,6 +118,10 @@ public class SJFInterface extends javax.swing.JFrame {
                                 .addGap(99, 99, 99)
                                 .addComponent(add_row, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,11 +143,11 @@ public class SJFInterface extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(31, 31, 31)
                 .addComponent(panel_myne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(18, 18, 18)
                 .addComponent(calculate)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(281, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,23 +171,14 @@ public class SJFInterface extends javax.swing.JFrame {
         process.setName(process_name);        
         burst.setName(burst_name);
         process.setText("Process "+next_count);
-        arrival.setText("1");
-        burst.setText("0");
+        arrival.setText("0");
+        burst.setText("1");
         txt_count.setText(String.valueOf(next_count));
         panel_myne.add(process);
         panel_myne.add(arrival);
         panel_myne.add(burst);
         panel_myne.revalidate();
         panel_myne.repaint();
-//        pnltexts.add(process);
-//        panel1.add(arrival);
-//        panel1.add(burst);
-//        pnltexts.revalidate();
-//        panel1.revalidate();
-//        panel1.revalidate();        
-//        pnltexts.repaint();
-//        panel1.repaint();
-//        panel1.repaint();
         panel_myne.repaint();
         
         
@@ -213,13 +202,12 @@ public class SJFInterface extends javax.swing.JFrame {
             Component[] children = panel_myne.getComponents();            
             int count_children = children.length;
             String[] processes_list = new String[count_children];
-//            for(int i=0;i<count_children;i++)
-            int i = 0;
+            int t = 0;
             for (Component sp : children) {                
                 if (sp instanceof TextField) {                        
                     String text = ((TextField)sp).getText();                    
-                    processes_list[i]=text;                   
-                    i++;
+                    processes_list[t]=text;                   
+                    t++;
                 }                
                
             }
@@ -245,54 +233,39 @@ public class SJFInterface extends javax.swing.JFrame {
                 }
                 
             }
-//            System.out.println(Arrays.toString(burst_times));                   
             
-
-//            for(int i=0;i<count;i++){
-//                String process = "process_"+i;
-////                String p = process.getText();
-//                processes[i] = p;
-//                arrival_times[i] = 0;
-//                int b = (int )(Math.random() * 20 + 1);
-//                burst_times[i] = b;            
-//
-//            }
-//            for (int i = 0; i < count; i++) {
-//                waiting_time[i] = 0;
-//                turn_around_time[i] = 0;
-//            }
             for(int k=0;k<count;k++){
                 System.out.println("Process :"+processes[k]+" Burst Time: "+burst_times[k]+" Waiting Time: "+waiting_time[k]+" TAT: "+turn_around_time[k]);
             }
-//            System.out.println("**********************************************************************************************************************");
-//            int temp;
-//            String temp_proc;
-//            for (int i = 0; i < count; i++) {
-//                for (int j = 0; j < count - 1; j++) {
-//                    if (burst_times[j] > burst_times[j + 1]) {
-//                        temp = burst_times[j];
-//                        burst_times[j] = burst_times[j + 1];
-//                        burst_times[j + 1] = temp;
-//
-//                        temp_proc  = processes[j];
-//                        processes[j] = processes[j + 1];
-//                        processes[j + 1] = temp_proc;
-//
-//                        temp = waiting_time[j];
-//                        waiting_time[j] = waiting_time[j + 1];
-//                        waiting_time[j + 1] = temp;
-//                    }
-//                }
-//            }
-//            for (int i = 0; i <count; i++) {
-//                turn_around_time[i] = burst_times[i] + waiting_time[i];
-//                waiting_time[i+1] = turn_around_time[i];
-//            }
-//
-//            for(int i=0;i<count;i++){
-//                message += "Process :"+processes[i]+" Burst Time: "+burst_times[i]+" Waiting Time: "+waiting_time[i]+" TAT: "+turn_around_time[i]+"\n";
-//                System.out.println("Process :"+processes[i]+" Burst Time: "+burst_times[i]+" Waiting Time: "+waiting_time[i]+" TAT: "+turn_around_time[i]);
-//            }
+            System.out.println("**********************************************************************************************************************");
+            int temp;
+            String temp_proc;
+            for (int i = 0; i < count; i++) {
+                for (int j = 0; j < count - 1; j++) {
+                    if (burst_times[j] > burst_times[j + 1]) {
+                        temp = burst_times[j];
+                        burst_times[j] = burst_times[j + 1];
+                        burst_times[j + 1] = temp;
+
+                        temp_proc  = processes[j];
+                        processes[j] = processes[j + 1];
+                        processes[j + 1] = temp_proc;
+
+                        temp = waiting_time[j];
+                        waiting_time[j] = waiting_time[j + 1];
+                        waiting_time[j + 1] = temp;
+                    }
+                }
+            }
+            for (int i = 0; i <count; i++) {
+                turn_around_time[i] = burst_times[i] + waiting_time[i];
+                waiting_time[i+1] = turn_around_time[i];
+            }
+
+            for(int i=0;i<count;i++){
+                message += "Process :"+processes[i]+" Burst Time: "+burst_times[i]+" Waiting Time: "+waiting_time[i]+" TAT: "+turn_around_time[i]+"\n";
+                System.out.println("Process :"+processes[i]+" Burst Time: "+burst_times[i]+" Waiting Time: "+waiting_time[i]+" TAT: "+turn_around_time[i]);
+            }
             System.out.println(Arrays.toString(burst_times));
             txt_result.setText(message);
         }
