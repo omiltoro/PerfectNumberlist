@@ -209,38 +209,43 @@ public class SJFInterface extends javax.swing.JFrame {
             int[] arrival_times = new int[count];
             int[] remaining_times = new int[count];
             int[] turn_around_time = new int[count];
-            String[] processes = new String[count];
-            Component[] children_ps = pnltexts.getComponents();
-            Component[] children_as = panel1.getComponents();
-            Component[] children_bs = panel1.getComponents();       
-            
-            for (Component sp : children_ps) {
-                int i =0;
+            String[] processes = new String[count];            
+            Component[] children = panel_myne.getComponents();            
+            int count_children = children.length;
+            String[] processes_list = new String[count_children];
+//            for(int i=0;i<count_children;i++)
+            int i = 0;
+            for (Component sp : children) {                
                 if (sp instanceof TextField) {                        
-                    String text = ((TextField)sp).getText();
-                    System.out.println(text);                   
-                    processes[i]=text;                   
+                    String text = ((TextField)sp).getText();                    
+                    processes_list[i]=text;                   
+                    i++;
                 }                
-                i++;
+               
             }
-            for (Component sp : children_as) {
-                int i =0;
-                if (sp instanceof TextField) {                        
-                    String text = ((TextField)sp).getText();
-                    int arrive = Integer.parseInt(text);
-                    arrival_times[i]=arrive;                   
-                }                
-                i++;
+            int a = 0;
+            int b = 1;
+            int c = 2;
+            int looper = 0,looper1 = 0,looper2 = 0;
+            for(int j=0;j<count_children;j++){                
+                if(j==a){
+                    processes[looper]=processes_list[j];
+                    looper++;
+                    a+=3;
+                }
+                if(j==b){
+                    arrival_times[looper1]=Integer.parseInt(processes_list[j]);
+                    looper1++;
+                    b+=3;
+                }
+                if(j==c){
+                    burst_times[looper2]=Integer.parseInt(processes_list[j]);
+                    looper2++;
+                    c+=3;
+                }
+                
             }
-            for (Component sp : children_bs) {
-                int i =0;
-                if (sp instanceof TextField) {                        
-                    String text = ((TextField)sp).getText();
-                    int arrive = Integer.parseInt(text);
-                    burst_times[i]=arrive;                   
-                }                
-                i++;
-            }
+//            System.out.println(Arrays.toString(burst_times));                   
             
 
 //            for(int i=0;i<count;i++){
@@ -256,8 +261,8 @@ public class SJFInterface extends javax.swing.JFrame {
 //                waiting_time[i] = 0;
 //                turn_around_time[i] = 0;
 //            }
-            for(int i=0;i<count;i++){
-                System.out.println("Process :"+processes[i]+" Burst Time: "+burst_times[i]+" Waiting Time: "+waiting_time[i]+" TAT: "+turn_around_time[i]);
+            for(int k=0;k<count;k++){
+                System.out.println("Process :"+processes[k]+" Burst Time: "+burst_times[k]+" Waiting Time: "+waiting_time[k]+" TAT: "+turn_around_time[k]);
             }
 //            System.out.println("**********************************************************************************************************************");
 //            int temp;
