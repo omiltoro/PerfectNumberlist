@@ -17,19 +17,7 @@ public class PerfectNumber {
     public static void main(String[] args) {
         // TODO code application logic here
         
-//        int i = 1;
-//        int j = 1;
-//        int sum =0;
-//        int count = 10;
-//        
-//        while(i<=10){
-//            int p = (int)Math.pow(2, i);
-//            sum = j + p;
-//            System.out.println("I is "+i+" and sum is "+sum);
-//            i++;
-//        }  
-//        int sum = (int)Math.pow(2, 5);
-//        System.out.println("Sum is "+sum);
+
         PerfectNumber myne = new PerfectNumber();   
         int count = 1;
         int limit = 30000;
